@@ -53,6 +53,21 @@ class AuthRepository {
     }
   }
 
+  Future<bool> signInWithGoogle() async {
+    final response = await _supabase.client.auth.signInWithProvider(
+      Provider.google,
+      options: AuthOptions(
+        redirectTo: "io.supabase.flutterquickstart://login-callback/",
+      ),
+    );
+
+    if (response) {
+      return response;
+    } else {
+      throw AuthError("Something error happened!");
+    }
+  }
+
   Future<void> signOut() async {
     await _supabase.client.auth.signOut();
   }

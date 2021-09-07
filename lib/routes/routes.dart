@@ -1,4 +1,3 @@
-import 'package:chirp/routes/middlewares.dart';
 import 'package:chirp/ui/auth/sign_in_page.dart';
 import 'package:chirp/ui/auth/sign_up_page.dart';
 import 'package:chirp/ui/main/main_page.dart';
@@ -16,7 +15,6 @@ final appRoutes = <GetPage>[
     name: "/landing",
     title: "Landing",
     transition: Transition.rightToLeftWithFade,
-    middlewares: [AuthMiddleware()],
     page: () => const LandingPage(),
   ),
   GetPage(

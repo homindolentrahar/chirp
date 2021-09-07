@@ -14,6 +14,7 @@ void main() async {
   await Supabase.initialize(
     url: dotenv.env['API_URL'],
     anonKey: dotenv.env['ANON_KEY'],
+    authCallbackUrlHostname: "login-callback"
   );
 
   runApp(MyApp());

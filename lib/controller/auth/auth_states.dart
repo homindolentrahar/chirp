@@ -32,6 +32,17 @@ class AuthState<T extends StatefulWidget> extends SupabaseAuthState {
 
   @override
   void onPasswordRecovery(Session session) {}
+
+  @override
+  void onErrorReceivingDeeplink(String message) {
+    Get.showSnackbar(
+      Snackbars.appSnackbar(
+        title: "Authentication error",
+        message: message,
+        type: SnackbarType.ERROR,
+      ),
+    );
+  }
 }
 
 class AuthRequiredState<T extends StatefulWidget>

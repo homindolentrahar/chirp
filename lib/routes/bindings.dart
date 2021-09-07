@@ -1,5 +1,5 @@
 import 'package:chirp/controller/auth/auth_controller.dart';
-import 'package:chirp/data/auth_repository.dart';
+import 'package:chirp/data/auth/auth_repository.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

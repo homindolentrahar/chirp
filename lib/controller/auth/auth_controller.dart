@@ -1,10 +1,10 @@
 import 'dart:developer';
 
+import 'package:chirp/data/auth/dtos/auth_user_dto.dart';
 import 'package:get/get.dart';
 import 'package:chirp/error/app_errors.dart';
-import 'package:chirp/data/auth_repository.dart';
+import 'package:chirp/data/auth/auth_repository.dart';
 import 'package:chirp/controller/core/base_controller.dart';
-import 'package:supabase/supabase.dart';
 
 class AuthController extends BaseController {
   final AuthRepository _authRepository;
@@ -18,12 +18,11 @@ class AuthController extends BaseController {
     validateForm.value = false;
   }
 
-  Future<User> getCurrentUser() async {
+  Future<AuthUserDto> getCurrentUser() async {
     final currentUser = await _authRepository.getCurrentUser();
+    final authUser = AuthUserDto.fromUser(currentUser);
 
-    log(currentUser!.id);
-
-    return currentUser;
+    return authUser;
   }
 
   Future<void> signInWithEmailAndPassword({
@@ -68,6 +67,26 @@ class AuthController extends BaseController {
         Get.back();
       }
       Get.offAllNamed("/main");
+    } on AuthError catch (e) {
+      if (Get.isDialogOpen!) {
+        Get.back();
+      }
+
+      showErrorSnackbar(error: e);
+    }
+  }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      showProgressLoading();
+
+      await _authRepository.signInWithGoogle();
+
+      if (Get.isDialogOpen!) {
+        Get.back();
+      }
+
+      // Get.offAllNamed("/main");
     } on AuthError catch (e) {
       if (Get.isDialogOpen!) {
         Get.back();

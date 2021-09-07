@@ -129,6 +129,15 @@ class _SignInPageState extends AuthState<SignInPage> {
                     }
                   },
                 ),
+                const SizedBox(height: 24),
+                BorderedButton(
+                  text: "Google",
+                  color: AppColor.white,
+                  onPressed: () {
+                    //  Logging in with google
+                    _authController.signInWithGoogle();
+                  },
+                ),
               ],
             ),
           ),

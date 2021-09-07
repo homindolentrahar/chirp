@@ -57,6 +57,7 @@ class BorderedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      minWidth: double.infinity,
       elevation: 0,
       highlightElevation: 0,
       focusElevation: 0,

@@ -25,6 +25,7 @@ class AppThemes {
         fontWeight: FontWeight.w600,
       ),
       subtitle2: TextStyle(
+        color: AppColor.white,
         fontSize: 14,
         fontWeight: FontWeight.w500,
       ),
