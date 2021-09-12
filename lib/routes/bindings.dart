@@ -1,5 +1,7 @@
 import 'package:chirp/controller/auth/auth_controller.dart';
+import 'package:chirp/controller/profile/profile_controller.dart';
 import 'package:chirp/data/auth/auth_repository.dart';
+import 'package:chirp/data/profile/profile_repository.dart';
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -9,7 +11,14 @@ class InitialBinding extends Bindings {
     final supabase = Get.put<Supabase>(Supabase.instance);
     final authRepository =
         Get.put<AuthRepository>(AuthRepository(supabase: supabase));
+    final profileRepository =
+        Get.put<ProfileRepository>(ProfileRepository(supabase: supabase));
 
-    Get.put<AuthController>(AuthController(authRepository: authRepository));
+    Get.put<AuthController>(
+      AuthController(authRepository: authRepository),
+    );
+    Get.put<ProfileController>(
+      ProfileController(profileRepository: profileRepository),
+    );
   }
 }

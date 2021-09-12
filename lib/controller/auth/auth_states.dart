@@ -1,3 +1,4 @@
+import 'package:chirp/controller/profile/profile_controller.dart';
 import 'package:chirp/ui/core/widgets/snackbars.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -6,9 +7,15 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthState<T extends StatefulWidget> extends SupabaseAuthState {
   @override
-  void onAuthenticated(Session session) {
+  void onAuthenticated(Session session) async {
     if (mounted) {
-      Get.offAllNamed("/main");
+      final userExists = await Get.find<ProfileController>().userExists();
+
+      if (userExists) {
+        Get.offAllNamed("/chats");
+      } else {
+        Get.offAllNamed("/auth-profile");
+      }
     }
   }
 

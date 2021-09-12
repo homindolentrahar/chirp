@@ -1,5 +1,4 @@
 import 'package:chirp/controller/auth/auth_states.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,9 +12,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends AuthState<SplashPage> {
   @override
   void initState() {
-    Future.delayed(3.seconds, () {
-      recoverSupabaseSession();
-    });
+    recoverSupabaseSession();
     super.initState();
   }
 

@@ -4,8 +4,10 @@ import 'package:supercharged/supercharged.dart';
 
 class AppColor {
   static final Color black = "#141926".toColor();
+  static final Color dark = Color(0xFF10161F);
   static final Color white = "#F8F8FF".toColor();
   static final Color primary = "#413DF7".toColor();
+  static final Color primaryText = "#6864FD".toColor();
 }
 
 class AppThemes {
@@ -24,10 +26,25 @@ class AppThemes {
         fontSize: 16,
         fontWeight: FontWeight.w600,
       ),
+      headline5: TextStyle(
+        color: AppColor.white,
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+      ),
+      subtitle1: TextStyle(
+        color: AppColor.white,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
       subtitle2: TextStyle(
         color: AppColor.white,
         fontSize: 14,
         fontWeight: FontWeight.w500,
+      ),
+      bodyText1: TextStyle(
+        color: AppColor.white.withOpacity(0.75),
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
       ),
       bodyText2: TextStyle(
         color: AppColor.white.withOpacity(0.75),

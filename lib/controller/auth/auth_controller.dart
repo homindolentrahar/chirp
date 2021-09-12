@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:chirp/controller/profile/profile_controller.dart';
 import 'package:chirp/data/auth/dtos/auth_user_dto.dart';
 import 'package:get/get.dart';
 import 'package:chirp/error/app_errors.dart';
@@ -12,10 +13,9 @@ class AuthController extends BaseController {
   AuthController({required AuthRepository authRepository})
       : _authRepository = authRepository;
 
-  final validateForm = false.obs;
-
-  void resetObservables() {
-    validateForm.value = false;
+  Future<String> get currentUserId async {
+    final currentUser = await _authRepository.getCurrentUser();
+    return currentUser!.id;
   }
 
   Future<AuthUserDto> getCurrentUser() async {
@@ -37,10 +37,18 @@ class AuthController extends BaseController {
 
       log("Logging in: ${session?.user?.email}");
 
+      final userProfileExists =
+          await Get.find<ProfileController>().userExists();
+
       if (Get.isDialogOpen!) {
         Get.back();
       }
-      Get.offAllNamed("/main");
+
+      if (userProfileExists) {
+        Get.offAllNamed("/chats");
+      } else {
+        Get.offAllNamed("/auth-profile");
+      }
     } on AuthError catch (e) {
       if (Get.isDialogOpen!) {
         Get.back();
@@ -55,7 +63,6 @@ class AuthController extends BaseController {
     required String password,
   }) async {
     try {
-      validateForm.value = true;
       showProgressLoading();
 
       final session =
@@ -66,7 +73,8 @@ class AuthController extends BaseController {
       if (Get.isDialogOpen!) {
         Get.back();
       }
-      Get.offAllNamed("/main");
+
+      Get.offAllNamed("/auth-profile");
     } on AuthError catch (e) {
       if (Get.isDialogOpen!) {
         Get.back();
@@ -82,11 +90,18 @@ class AuthController extends BaseController {
 
       await _authRepository.signInWithGoogle();
 
+      final userProfileExists =
+          await Get.find<ProfileController>().userExists();
+
       if (Get.isDialogOpen!) {
         Get.back();
       }
 
-      // Get.offAllNamed("/main");
+      if (userProfileExists) {
+        Get.offAllNamed("/chats");
+      } else {
+        Get.offAllNamed("/auth-profile");
+      }
     } on AuthError catch (e) {
       if (Get.isDialogOpen!) {
         Get.back();

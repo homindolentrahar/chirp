@@ -118,9 +118,10 @@ class _SignUpPageState extends AuthState<SignUpPage> {
                   validators: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                     FormBuilderValidators.minLength(context, 8),
-                    FormBuilderValidators.match(
+                    FormBuilderValidators.equal(
                       context,
                       _passwordController.text,
+                      errorText: "Repeat password must match the password",
                     ),
                   ]),
                   onChanged: null,
@@ -139,11 +140,10 @@ class _SignUpPageState extends AuthState<SignUpPage> {
                       final passwordValue =
                           _formKey.currentState?.value["password"];
 
-                      _authController
-                          .signUpWithEmailAndPassword(
-                            email: emailValue,
-                            password: passwordValue,
-                          );
+                      _authController.signUpWithEmailAndPassword(
+                        email: emailValue,
+                        password: passwordValue,
+                      );
                     } else {
                       //  show invalid snackbar
                       Get.showSnackbar(

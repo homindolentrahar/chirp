@@ -92,7 +92,7 @@ class AppBackButton extends StatelessWidget {
       focusElevation: 0,
       disabledElevation: 0,
       minWidth: 0,
-      padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       color: AppColor.white,
       splashColor: AppColor.black.withOpacity(0.15),
       highlightColor: AppColor.black.withOpacity(0.25),
@@ -103,6 +103,51 @@ class AppBackButton extends StatelessWidget {
         size: 16,
       ),
       onPressed: () => Get.back(),
+    );
+  }
+}
+
+class ProceedButton extends StatelessWidget {
+  final bool filled;
+  final VoidCallback onPressed;
+
+  const ProceedButton({
+    Key? key,
+    required this.onPressed,
+    this.filled = true,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      elevation: 0,
+      highlightElevation: 0,
+      focusElevation: 0,
+      disabledElevation: 0,
+      minWidth: 0,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      color: filled ? AppColor.white : Colors.transparent,
+      splashColor: filled
+          ? AppColor.black.withOpacity(0.15)
+          : AppColor.white.withOpacity(0.15),
+      highlightColor: filled
+          ? AppColor.black.withOpacity(0.25)
+          : AppColor.white.withOpacity(0.25),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(2.5),
+        side: filled
+            ? BorderSide.none
+            : BorderSide(
+                width: 1.5,
+                color: AppColor.white,
+              ),
+      ),
+      child: Icon(
+        Ionicons.arrow_forward,
+        color: filled ? AppColor.black : AppColor.white,
+        size: 16,
+      ),
+      onPressed: onPressed,
     );
   }
 }

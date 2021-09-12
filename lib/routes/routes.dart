@@ -1,6 +1,7 @@
 import 'package:chirp/ui/auth/sign_in_page.dart';
 import 'package:chirp/ui/auth/sign_up_page.dart';
-import 'package:chirp/ui/main/main_page.dart';
+import 'package:chirp/ui/chats/chats_page.dart';
+import 'package:chirp/ui/profile/auth_profile_page.dart';
 import 'package:get/get.dart';
 import 'package:chirp/ui/core/splash_page.dart';
 import 'package:chirp/ui/auth/landing_page.dart';
@@ -30,9 +31,15 @@ final appRoutes = <GetPage>[
     page: () => const SignUpPage(),
   ),
   GetPage(
-    name: "/main",
-    title: "Main",
+    name: "/auth-profile",
+    title: "Auth Profile",
+    transition: Transition.rightToLeft,
+    page: () => const AuthProfilePage(),
+  ),
+  GetPage(
+    name: "/chats",
+    title: "Chats",
     transition: Transition.rightToLeftWithFade,
-    page: () => const MainPage(),
+    page: () => const ChatsPage(),
   ),
 ];
