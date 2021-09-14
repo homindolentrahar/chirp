@@ -39,6 +39,8 @@ class _SignUpPageState extends AuthState<SignUpPage> {
     _passwordController.dispose();
     _repeatPasswordController.dispose();
 
+    _authController.signUpPassword.value = "";
+
     super.dispose();
   }
 
@@ -101,30 +103,34 @@ class _SignUpPageState extends AuthState<SignUpPage> {
                     FormBuilderValidators.required(context),
                     FormBuilderValidators.minLength(context, 8),
                   ]),
-                  onChanged: null,
+                  onChanged: (value) {
+                    _authController.signUpPassword.value = value ?? "";
+                  },
                 ),
                 const SizedBox(height: 24),
-                AppTextField(
-                  controller: _repeatPasswordController,
-                  obscureText: true,
-                  prefixIcon: Icon(
-                    Ionicons.key_sharp,
-                    size: 20,
-                    color: AppColor.white.withOpacity(0.3),
-                  ),
-                  name: "repeat-password",
-                  hintText: "Repeat Password",
-                  keyboardType: TextInputType.visiblePassword,
-                  validators: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.minLength(context, 8),
-                    FormBuilderValidators.equal(
-                      context,
-                      _passwordController.text,
-                      errorText: "Repeat password must match the password",
+                Obx(
+                  () => AppTextField(
+                    controller: _repeatPasswordController,
+                    obscureText: true,
+                    prefixIcon: Icon(
+                      Ionicons.key_sharp,
+                      size: 20,
+                      color: AppColor.white.withOpacity(0.3),
                     ),
-                  ]),
-                  onChanged: null,
+                    name: "repeat-password",
+                    hintText: "Repeat Password",
+                    keyboardType: TextInputType.visiblePassword,
+                    validators: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(context),
+                      FormBuilderValidators.minLength(context, 8),
+                      FormBuilderValidators.equal(
+                        context,
+                        _authController.signUpPassword.value,
+                        errorText: "Repeat password must match the password",
+                      ),
+                    ]),
+                    onChanged: null,
+                  ),
                 ),
                 const SizedBox(height: 48),
                 FilledButton(

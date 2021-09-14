@@ -27,8 +27,9 @@ dependencies:
   # Functionality
   get: ^4.3.8
   json_annotation:
-  supabase: ^0.2.5
+  supabase: ^0.2.6
   supabase_flutter: ^0.2.6
+  socket_io_client: ^2.0.0-beta.4-nullsafety.0
   #  UI
   lottie: ^1.1.0
   ionicons: ^0.1.2

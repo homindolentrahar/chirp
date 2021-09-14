@@ -1,6 +1,7 @@
 import 'package:chirp/controller/auth/auth_states.dart';
 import 'package:chirp/controller/profile/profile_controller.dart';
 import 'package:chirp/ui/chats/widgets/chats_drawer.dart';
+import 'package:chirp/ui/core/widgets/buttons.dart';
 import 'package:chirp/ui/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,43 +31,33 @@ class _ChatsPageState extends AuthRequiredState<ChatsPage> {
           backgroundColor: AppColor.white,
           splashColor: AppColor.black.withOpacity(0.15),
           focusColor: AppColor.black.withOpacity(0.15),
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed("/create-chats");
+          },
           child: Icon(
             Ionicons.chatbubble,
             color: AppColor.black,
           ),
-        ).marginAll(24),
+        ).marginAll(16),
         body: NestedScrollView(
           headerSliverBuilder: (ctx, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                leading: InkWell(
-                  borderRadius: BorderRadius.circular(360),
-                  splashColor: AppColor.white.withOpacity(0.15),
-                  highlightColor: AppColor.white.withOpacity(0.15),
-                  onTap: () {
+                leading: AppIconButton(
+                  icon: Ionicons.menu,
+                  onPressed: () {
                     Scaffold.of(ctx).openDrawer();
                   },
-                  child: Icon(
-                    Ionicons.menu,
-                    color: AppColor.white,
-                  ).paddingAll(8),
                 ),
                 title: Text(
                   "Chats",
                   style: Get.textTheme.subtitle1,
                 ),
                 actions: [
-                  InkWell(
-                    borderRadius: BorderRadius.circular(360),
-                    splashColor: AppColor.white.withOpacity(0.15),
-                    highlightColor: AppColor.white.withOpacity(0.15),
-                    onTap: () {},
-                    child: Icon(
-                      Ionicons.ellipsis_vertical,
-                      color: AppColor.white,
-                      size: 20,
-                    ).paddingAll(8),
+                  AppIconButton(
+                    icon: Ionicons.ellipsis_vertical,
+                    iconSize: 20,
+                    onPressed: () {},
                   ),
                 ],
                 backgroundColor: Get.theme.canvasColor,

@@ -18,6 +18,8 @@ class ProfileUserDto {
   String displayName;
   @JsonKey(defaultValue: "")
   String bio;
+  @JsonKey(defaultValue: <String>[])
+  List<String> contacts;
   @JsonKey(defaultValue: "")
   String? createdAt;
   @JsonKey(defaultValue: "")
@@ -31,6 +33,7 @@ class ProfileUserDto {
     this.avatarUrl = "",
     this.displayName = "",
     this.bio = "",
+    this.contacts = const <String>[],
     this.createdAt,
     this.lastSignInAt = "",
   });

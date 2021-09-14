@@ -6,6 +6,7 @@ import 'package:chirp/controller/core/base_controller.dart';
 import 'package:chirp/data/profile/dtos/profile_user_dto.dart';
 import 'package:chirp/data/profile/profile_repository.dart';
 import 'package:chirp/error/app_errors.dart';
+import 'package:chirp/utils/value_formatters.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends BaseController {
@@ -34,12 +35,7 @@ class ProfileController extends BaseController {
   }
 
   Uint8List getUserAvatar() {
-    final parsedData = profileUser.value.avatarUrl
-        .split(", ")
-        .map((item) => int.parse(item))
-        .toList();
-
-    return Uint8List.fromList(parsedData);
+    return ValueFormatters.parseImageData(profileUser.value.avatarUrl);
   }
 
   Future<bool> userExists() async {

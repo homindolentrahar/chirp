@@ -13,6 +13,9 @@ class AuthController extends BaseController {
   AuthController({required AuthRepository authRepository})
       : _authRepository = authRepository;
 
+  //  Sign Up observable password
+  final signUpPassword = "".obs;
+
   Future<String> get currentUserId async {
     final currentUser = await _authRepository.getCurrentUser();
     return currentUser!.id;

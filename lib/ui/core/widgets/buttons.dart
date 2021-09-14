@@ -151,3 +151,31 @@ class ProceedButton extends StatelessWidget {
     );
   }
 }
+
+class AppIconButton extends StatelessWidget {
+  final IconData icon;
+  final double? iconSize;
+  final VoidCallback onPressed;
+
+  const AppIconButton({
+    Key? key,
+    required this.icon,
+    this.iconSize = 24,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(360),
+      splashColor: AppColor.white.withOpacity(0.15),
+      highlightColor: AppColor.white.withOpacity(0.15),
+      onTap: onPressed,
+      child: Icon(
+        icon,
+        size: iconSize,
+        color: AppColor.white,
+      ).paddingAll(8),
+    );
+  }
+}

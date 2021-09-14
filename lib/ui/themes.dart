@@ -1,13 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 
 class AppColor {
-  static final Color black = "#141926".toColor();
-  static final Color dark = Color(0xFF10161F);
-  static final Color white = "#F8F8FF".toColor();
-  static final Color primary = "#413DF7".toColor();
-  static final Color primaryText = "#6864FD".toColor();
+  static final Color black = Color(0xFF0E111A);
+  static final Color dark = Color(0xFF141B26);
+  static final Color white = Color(0xFFF8F8FF);
+  static final Color primary = Color(0xFF413DF7);
+  static final Color primaryText = Color(0xFF6864FD);
 }
 
 class AppThemes {
@@ -29,6 +28,11 @@ class AppThemes {
       headline5: TextStyle(
         color: AppColor.white,
         fontSize: 14,
+        fontWeight: FontWeight.w600,
+      ),
+      headline6: TextStyle(
+        color: AppColor.white,
+        fontSize: 12,
         fontWeight: FontWeight.w600,
       ),
       subtitle1: TextStyle(
